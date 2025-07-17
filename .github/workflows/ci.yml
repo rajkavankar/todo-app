@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Log in to Docker Hub
+    - name: Log in to Docker hub
       run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag rajkavankar/todo-app:latest
