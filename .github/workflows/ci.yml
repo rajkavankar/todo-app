@@ -1,0 +1,21 @@
+name: Docker image build
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    name: "Createing and pushingl docker image"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag rajkavankar/todo-app:latest
+    - name: Push to docker hub
+      run: docker push todo-app:latest
