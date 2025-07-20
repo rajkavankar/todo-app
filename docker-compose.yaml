@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    # image: rajkavankar/todo-app
+    image: rajkavankar/todo-app:latest
     container_name: nest-app
     restart: unless-stopped
     env_file:

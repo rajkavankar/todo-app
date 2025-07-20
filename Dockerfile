@@ -12,17 +12,17 @@ COPY . .
 RUN npx prisma generate
 RUN npm run build
 
-FROM builder AS runner
+FROM node:20-alpine AS runner
 
 WORKDIR /app
 
 RUN apk add --no-cache libc6-compat
 
-COPY --chown=node:node package*.json ./
+COPY package*.json ./
 RUN npm ci --omit=dev
 
-COPY --chown=node:node --from=builder /app/prisma /app/prisma
-COPY --chown=node:node --from=builder /app/dist ./dist
+COPY --from=builder /app/prisma /app/prisma
+COPY --from=builder /app/dist ./dist
 
 RUN npx prisma generate
 

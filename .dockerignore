@@ -6,9 +6,11 @@ dist
 .git
 .gitignore
 .vscode
+.github
+.md
 
 Dockerfile
-docker-compose.yml
+docker-compose.yaml
 .dockerignore
 
 npm-debug.log*
