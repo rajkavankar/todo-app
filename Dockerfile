@@ -12,7 +12,7 @@ COPY . .
 RUN npx prisma generate
 RUN npm run build
 
-FROM builder as runner
+FROM builder AS runner
 
 WORKDIR /app
 
@@ -29,4 +29,4 @@ RUN npx prisma generate
 USER node
 EXPOSE 5000
 
-CMD npx prisma migrate deploy && npm run start:prod
+CMD ["/bin/sh", "-c", "npx prisma migrate deploy && npm run start:prod"]
