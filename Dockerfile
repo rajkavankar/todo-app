@@ -29,4 +29,4 @@ RUN npx prisma generate
 USER node
 EXPOSE 5000
 
-CMD ["node", "dist/main.js"]
+CMD npx prisma migrate deploy && npm run start:prod
